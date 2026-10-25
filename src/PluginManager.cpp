@@ -133,8 +133,6 @@ double PluginManager::call(const std::string& name, double argument) const {
         throw std::runtime_error("Неизвестная функция: " + name);
     }
 
-    // Исключения C++ не должны пересекать границу DLL; все плагины
-    // из этого проекта сообщают об ошибках через std::runtime_error.
     const double result = it->second(argument);
     if (!std::isfinite(result)) {
         throw std::runtime_error("Функция '" + name +
